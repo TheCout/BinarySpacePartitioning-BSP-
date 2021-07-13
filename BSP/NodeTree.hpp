@@ -1,3 +1,6 @@
+// Copyright 2010 Google LLC
+// Author: username
+
 #pragma once
 #include "Node.hpp"
 
@@ -5,10 +8,12 @@
 class NodeTree {
 public:
 	Node* root = new Node();
+	std::vector<char> nodes_names;
 
 	NodeTree(_2fpolygon value) 
 	{
 		root->data = value;
+		nodes_names.push_back('A');
 	}
 
 
@@ -20,21 +25,23 @@ public:
 		Node* currentNode = root;
 		Node* otherPathNode = nullptr; // The forgoten node :(  :C lol
 		bool stop = false;
+
+		int depth = 0; // Thats not necessary here, it just shows how much we cave into the tree to get into a especific node
 		while (!stop)
 		{
 			// Prints everything
 			if (currentNode != NULL)
 			{
-				printf("Printing data... \n");
+				printf("Printing data in depth: %i \n", depth);
 				for (int index = 0; index < currentNode->data.size(); ++index)
-					printf("	X: %f, Y: %f \n", currentNode->data[index].x, currentNode->data[index].y);
+					printf("	Point %i = X: %f, Y: %f \n", index + 1, currentNode->data[index].x, currentNode->data[index].y);
 				printf("Data printed \n\n");
 			}
 			if (otherPathNode != NULL)
 			{
-				printf("Printing data... \n");
+				printf("Printing data in depth: %i \n", depth);
 				for (int index = 0; index < otherPathNode->data.size(); ++index)
-					printf("	X: %f, Y: %f \n", otherPathNode->data[index].x, otherPathNode->data[index].y);
+					printf("	Point %i = X: %f, Y: %f \n", index + 1, otherPathNode->data[index].x, otherPathNode->data[index].y);
 				printf("Data printed \n\n");
 			}
 
@@ -43,17 +50,24 @@ public:
 			if (currentNode->front != NULL)
 			{
 				if (currentNode->back != NULL)
+				{
 					otherPathNode = currentNode->back;
+					nodes_names.push_back(nodes_names.back() + 1);
+				}
 				currentNode = currentNode->front;
+				nodes_names.push_back(nodes_names.back() + 1);
 			}
 			else if (currentNode->back != NULL) 
 			{
 				currentNode = currentNode->back;
+				nodes_names.push_back(nodes_names.back() + 1);
 			}
 			else
 			{
 				stop = true;
 			}
+
+			depth++;
 		}
 	}
 

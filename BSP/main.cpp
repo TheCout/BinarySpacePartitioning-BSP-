@@ -39,7 +39,14 @@ int main()
 
     tree.PrintAll(); // Print all the Binary-Space-Partitioning(BSP) Nodes datas
     std::vector<Node*> nodes = tree.getNodesAsVector();
-    printf("Valor vindo direto do vetor: %f", nodes[0]->data[1].x);
+    printf("Value coming from vector: %f \n", nodes[0]->data[1].x);
+
+
+    // Gets node ids and char identifiers (name)
+    for (int i = 0; i < tree.nodes_names.size(); ++i)
+    {
+        printf("Id of node %c is %i \n", tree.nodes_names[i], i + 1);
+    }
     system("pause");
     return 0;
 }
