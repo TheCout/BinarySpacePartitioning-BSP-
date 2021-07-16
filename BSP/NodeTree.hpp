@@ -1,6 +1,3 @@
-// Copyright 2010 Google LLC
-// Author: username
-
 #pragma once
 #include "Node.hpp"
 
@@ -10,11 +7,23 @@ public:
 	Node* root = new Node();
 	std::vector<char> nodes_names;
 
+
 	NodeTree(_2fpolygon value) 
 	{
 		root->data = value;
 		nodes_names.push_back('A');
 	}
+
+
+
+	Node* MakeTree(_2fpolygons* list)
+	{
+		if (list == NULL) return this->root;
+
+		Node* tree = new Node();
+		//tree->back = MakeTree(list->back());
+	}
+
 
 
 	/// <summary>
@@ -66,7 +75,6 @@ public:
 			{
 				stop = true;
 			}
-
 			depth++;
 		}
 	}

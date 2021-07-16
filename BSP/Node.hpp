@@ -2,11 +2,6 @@
 #include "Geometry.hpp"
 
 
-#define FRONT 0
-#define BACK 1
-#define _CURRENT_STATUS FRONT
-
-
 class Node {
 public:
 	_2fpolygon data;

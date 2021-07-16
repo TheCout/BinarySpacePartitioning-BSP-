@@ -34,7 +34,7 @@ struct vec3 {
 	}
 };
 
-template<class tn>
+template<typename tn>
 struct line {
 	tn a, b;
 
